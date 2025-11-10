@@ -1,0 +1,27 @@
+# --- Python cache ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual Environment ---
+venv/
+env/
+.venv/
+Lib/
+Scripts/
+share/
+pyvenv.cfg
+
+# --- Project outputs ---
+results/
+*.log
+
+# --- Notes ---
+notes.txt
+
+# --- IDE / OS files ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
