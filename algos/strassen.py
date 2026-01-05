@@ -48,8 +48,6 @@ def strassen_matrix_multiply(A,B):
     A11 , A12 , A21 , A22 = split(A,k)
     B11 , B12 , B21 , B22 = split(B,k)
 
-    
-
     # Compute all intermediate matrices
 
     M1 = strassen_matrix_multiply(add_matrix(A11,A22),add_matrix(B11,B22))
