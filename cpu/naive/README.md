@@ -106,11 +106,33 @@ void gemm_contiguous(
 
 ## Correctness & Validation
 
-`test_gemm.cpp` cross-validates both implementations against known deterministic outputs and random rectangular matrices.
+`test_gemm.cpp` verifies that both implementations correctly calculate the matrix product of known $2 \times 2$ matrices using standard C++ runtime assertions (`assert`).
 
-Floating-point equality is verified using an epsilon threshold:
+### Verification Workflow
 
-$$|C_{\text{vector}}(i, j) - C_{\text{contiguous}}(i, j)| < \epsilon \quad (\epsilon = 10^{-9})$$
+Given test matrices:
+
+$$A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$$
+
+The expected product matrix $C = A \times B$ is:
+
+$$C = \begin{bmatrix} 1(5) + 2(7) & 1(6) + 2(8) \\ 3(5) + 4(7) & 3(6) + 4(8) \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}$$
+
+Both functions are checked against these expected values:
+
+```cpp
+// Verification for vector<vector<double>>
+assert(C[0][0] == 19);
+assert(C[0][1] == 22);
+assert(C[1][0] == 43);
+assert(C[1][1] == 50);
+
+// Verification for contiguous vector<double>
+assert(C_contig[0] == 19);
+assert(C_contig[1] == 22);
+assert(C_contig[2] == 43);
+assert(C_contig[3] == 50);
+```
 
 ### Build and Run
 
