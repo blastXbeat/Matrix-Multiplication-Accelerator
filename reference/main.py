@@ -1,5 +1,5 @@
-import algos
-import utils
+import reference.algos as algos
+import reference.utils as utils
 import time
 
 def main():
